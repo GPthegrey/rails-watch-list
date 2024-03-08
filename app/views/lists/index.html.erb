@@ -1,10 +1,19 @@
-<h2>My lists</h2>
-<div class="cards">
-  <% @lists.each do |list| %>
-<div class="card-category logo<%= (1..5).to_a.sample %>.jpeg">
-  <%= link_to list.name, list_path(list)%>
-  </div>
-  <% end %>
-  </div>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">
+<div class="container">
+  <h1>Save any kind of movies</h1>
+  <p>Classic</p>
   <%= link_to 'Create new List', new_list_path, class: 'btn btn-success mt-4' %>
+</div>
+</div>
+  <div class="container mt-3">
+  <h2>My lists</h2>
+  <div class="cards">
+    <% @lists.each do |list| %>
+      <%= cl_image_path list.photo.key, height: 300, width: 400, crop: :fill %>
+      <div class="card-wrapper">
+        <%= link_to list.name, list_path(list), class: 'btn btn-info'%>
+      </div>
+      <% end %>
+  </div>
+  </div>
 </div>
