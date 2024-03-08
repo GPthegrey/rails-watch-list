@@ -1,0 +1,20 @@
+<h2><%= @list.name %></h2>
+<% @list.movies.each do |movie| %>
+  <div class="cards">
+    <img src="../app/assets/images/cinema<%= (1..5).to_a.sample %>.jpeg" alt="">
+    <div class="card-category bg-light">
+      <p>Movies: <%= movie.title %></p>
+      <p>overview: <%= movie.overview %></p>
+      <p>Rating: <%= movie.rating %></p>
+    </div>
+  </div>
+<% end %>
+<% if @list.bookmarks.present?%>
+  <%@list.bookmarks.each do |bookmark|  %>
+  <div><i class="fa-solid fa-bookmark pl-3"></i><%= bookmark.comment %></div>
+  <% end %>
+<% end %>
+
+<br>
+<%= link_to 'Back to List', lists_path, class: 'btn btn-primary mr-4' %>
+<%= link_to 'Add Bookmark', new_list_bookmark_path(@list), class: 'btn btn-success ml-4' %>
