@@ -10,10 +10,13 @@
               <%= image_tag movie.poster_url, alt: "Movie Poster", class: "img-fluid" %>
             </div>
             <div class="col-md-6 bg-light">
-              <div class="card-body">
-                <%= movie.title %>
+              <div class="card-body"><h6>
+                <%= movie.title %></h6>
+                <br>
                 <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
-                <%= link_to "Delete", bookmark_path(bookmark), class: "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+                <i class="fa-solid fa-bookmark"></i>
+                <%= bookmark.comment %>
+                <%= link_to "Delete Bookmark", bookmark_path(bookmark), class: "btn btn-danger text-white", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
               </div>
             </div>
           </div>
@@ -22,8 +25,8 @@
     <% end %>
   </div>
   <div class="links mt-3">
-    <%= link_to "Back", root_path, class: "btn btn-primary" %>
+    <%= link_to "Back to Lists", root_path, class: "btn btn-primary" %>
     <%= link_to "Add Bookmark", new_list_bookmark_path(@list), class: "btn btn-success ml-3" %>
-    <%= link_to "Delete list", list_path(@list), class: "btn btn-danger ml-3", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+    <%= link_to "Delete list", list_path(@list), class: "btn btn-danger text-white ml-3", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
   </div>
 </div>
