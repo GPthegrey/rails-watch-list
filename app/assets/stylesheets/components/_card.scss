@@ -1,12 +1,11 @@
 .cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 16px;
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 180px;
+  border-radius: 10px;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 1);
 
-
-.card-wrapper {
-  text-align: center;
 }
 
 // Smallest device

@@ -1,24 +1,29 @@
-<div class="container mt-3">
-  <h2 class="text-center"><%= @list.name %></h2>
-  <% @list.movies.each do |movie| %>
-    <div class="cards text-center">
-      <div class="card-wrapper">
-        <%= image_tag movie.poster_url, alt: "Le Wagon", width: 250, height: 250 %>
-      <div class="card-category bg-light">
-        <p>Movies: <%= movie.title %></p>
-        <p>overview: <%= movie.overview %></p>
-        <p>Rating: <%= movie.rating %></p>
-        <% movie.bookmarks.each do |bookmark| %>
-        <div>
-          <p><i class="fa-solid fa-bookmark pl-3"></i><%= bookmark.comment %><%= link_to 'Delete', bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%><i class="fa-solid fa-delete-left"></i></p>
+<div class="container">
+  <h3 class="card-title"><%= @list.name %></h3>
+  <h5 class="card-title">Movies: </h5>
+  <div class="row">
+    <% @list.movies.each do |movie| %>
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card">
+          <div class="row">
+            <div class="col-md-6">
+              <%= image_tag movie.poster_url, alt: "Movie Poster", class: "img-fluid" %>
+            </div>
+            <div class="col-md-6 bg-light">
+              <div class="card-body">
+                <%= movie.title %>
+                <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+                <%= link_to "Delete", bookmark_path(bookmark), class: "btn btn-danger", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+              </div>
+            </div>
+          </div>
         </div>
-        <% end %>
       </div>
-    </div>
-  <% end %>
-  <br>
-  <div>
-  <%= link_to 'Back to List', root_path, class: 'btn btn-primary mr-4' %>
-  <%= link_to 'Add Movie', new_list_bookmark_path(@list), class: 'btn btn-success ml-4' %>
+    <% end %>
+  </div>
+  <div class="links mt-3">
+    <%= link_to "Back", root_path, class: "btn btn-primary" %>
+    <%= link_to "Add Bookmark", new_list_bookmark_path(@list), class: "btn btn-success ml-3" %>
+    <%= link_to "Delete list", list_path(@list), class: "btn btn-danger ml-3", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
   </div>
 </div>
