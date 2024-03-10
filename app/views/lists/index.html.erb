@@ -1,14 +1,14 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://upload.wikimedia.org/wikipedia/commons/3/30/Cinemaaustralia.jpg);">
   <div class="container">
-    <h1 class="text-center">Save any kind of movies</h1>
-    <h4 class="text-center text-white">Classic</h4>
+    <h1 class="text-center">Create Lists with your favorite movies</h1>
+    <h4 class="text-center text-white">Share them with the world!</h4>
   </div>
 </div>
 
 <div class="container">
   <div class='d-flex justify-content-between'>
     <h3 class='mt-3'>My Lists</h3>
-    <%= link_to 'Create a Movie List', new_list_path, class: 'btn btn-success text-white mt-3' %>
+    <%= link_to 'Create a Movie List', new_list_path, class: 'btn btn-success text-white mt-3 shadow' %>
   </div>
   <div class="row">
     <% @lists.each do |list| %>
