@@ -29,4 +29,25 @@
     <%= link_to "Back to Lists", root_path, class: "btn btn-primary rounded" %>
     <%= link_to "Delete list", list_path(@list), class: "btn btn-danger text-white rounded", data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
   </div>
+  <div class="review-container border-top">
+    <div class="reviews d-flex justify-content-around">
+      <div class="review w-50">
+        <h5 class='mt-3'>Reviews</h5>
+        <div class="ind-review border-bottom">
+          <% @list.reviews.each do |review| %>
+          <p>Rating: <%= review.rating %><i class="fa-solid fa-star"></i></p>
+          <p><%= review.comment %></p>
+        <% end %>
+        </div>
+      </div>
+      <div class="form border bg-light p-4 my-3 w-25">
+        <h6>Add your Review</h6>
+        <%= simple_form_for [@list, @review] do |f| %>
+        <%= f.input :comment %>
+        <%= f.input :rating %>
+        <%= f.submit%>
+        <% end %>
+      </div>
+      </div>
+  </div>
 </div>
