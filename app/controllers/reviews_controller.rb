@@ -7,8 +7,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to list_path(@list), notice: "Review was successfully created."
     else
-      logger.error @review.errors.full_messages.to_sentence
-      render :show, status: :unprocessable_entity
+      render 'lists/show', status: :unprocessable_entity
     end
   end
 
