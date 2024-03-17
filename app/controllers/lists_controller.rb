@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-  before_action :set_list, only: %i[ show destroy create_review ]
+  before_action :set_list, only: %i[ show destroy]
 
   def index
     @lists = List.all
@@ -25,16 +25,6 @@ class ListsController < ApplicationController
     end
   end
 
-  def create_review
-    @review = Review.new(review_params)
-    @review.list = @list
-
-    if @review.save
-      redirect_to list_path(@list), notice: "Review was successfully created."
-    else
-      render :show, status: :unprocessable_entity
-    end
-  end
 
 
   def destroy
@@ -48,9 +38,6 @@ class ListsController < ApplicationController
     params.require(:list).permit(:name, :photo)
   end
 
-  def review_params
-    params.require(:review).permit(:comment, :rating)
-  end
 
   def set_list
     @list = List.find(params[:id])
