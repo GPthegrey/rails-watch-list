@@ -46,8 +46,9 @@
         <% end %>
         </div>
       </div>
-      <div class="form border bg-light p-4 my-3 w-25">
-      <h6>Add your Review</h6>
+      <div class='review-form my-3' data-controller='toggle'>
+        <button class='btn btn-primary' data-action='click->toggle#toggle_form'>Add your review</button>
+      <div class="form border bg-light p-4 my-3 w-100 d-none" data-toggle-target='form'>
       <%= simple_form_for [@list, @review] do |f| %>
         <%= f.input :comment %>
         <%= f.input :rating %>
@@ -55,5 +56,6 @@
       <% end %>
     </div>
       </div>
+    </div>
   </div>
 </div>
