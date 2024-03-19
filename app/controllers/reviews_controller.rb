@@ -1,13 +1,17 @@
 class ReviewsController < ApplicationController
-
   def create
     @review = Review.new(review_params)
     @list = List.find(params[:list_id])
     @review.list = @list
-    if @review.save
-      redirect_to list_path(@list), notice: "Review was successfully created."
-    else
-      render 'lists/show', status: :unprocessable_entity
+
+    respond_to do |format|
+      if @review.save
+        format.html { redirect_to list_path(@list) }
+        format.json { render json: { inserted_item: render_to_string(partial: 'review', locals: { review: @review }), form: render_to_string(partial: 'lists/form', locals: { review: Review.new }) } }
+      else
+        format.html { render 'lists/form', status: :unprocessable_entity }
+        format.json { render json: { errors: @review.errors.full_messages }, status: :unprocessable_entity }
+      end
     end
   end
 
